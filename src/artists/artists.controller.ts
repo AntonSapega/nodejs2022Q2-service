@@ -1,11 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { ArtistsService } from './artists.service';
 
 @Controller('artist')
 export class ArtistsController {
   constructor(private artistsService: ArtistsService) {}
   @Get()
-  getAll() {
-    return this.artistsService.getUsers();
+  @HttpCode(HttpStatus.OK)
+  async getAll(): Promise<IArtist[]> {
+    return this.artistsService.getArtists();
   }
 }

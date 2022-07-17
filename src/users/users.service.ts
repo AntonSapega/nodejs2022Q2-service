@@ -17,12 +17,12 @@ export class UsersService {
   constructor(private db: DatabaseService) {}
 
   public async getAll(): Promise<IUser[]> {
-    return this.db.getUsersList();
+    return this.db.users.getUsersList();
   }
 
   public async getUser(id: string): Promise<IUser> {
     const isUuid = uuidValidate(id);
-    const user: IUser = await this.db.getUser(id);
+    const user: IUser = await this.db.users.getUser(id);
 
     if (!isUuid) {
       throw new BadRequestException();
@@ -40,7 +40,7 @@ export class UsersService {
   public async createUser(userInfo: CreateUserDto): Promise<IUser> {
     if (this.isValidNewUserInfo(userInfo)) {
       const newUser = new NewUser(userInfo);
-      return this.db.create(newUser);
+      return this.db.users.create(newUser);
     }
     throw new BadRequestException();
   }
@@ -49,7 +49,7 @@ export class UsersService {
     id: string,
     updateData: UpdatePasswordDto,
   ): Promise<IUser> {
-    const user: IUser = await this.db.getUser(id);
+    const user: IUser = await this.db.users.getUser(id);
 
     if (!uuidValidate(id) || !this.isValidUpdatePasswordDto(updateData)) {
       throw new BadRequestException();
@@ -63,11 +63,11 @@ export class UsersService {
       throw new ForbiddenException();
     }
 
-    return this.db.updatePassword(id, updateData.newPassword);
+    return this.db.users.updatePassword(id, updateData.newPassword);
   }
 
   public async deleteUser(id: string): Promise<void> {
-    const result = await this.db.remove(id);
+    const result = await this.db.users.remove(id);
 
     if (!uuidValidate(id)) {
       throw new BadRequestException();

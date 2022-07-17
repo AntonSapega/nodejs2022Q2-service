@@ -5,7 +5,7 @@ import { DatabaseService } from '../database/database.service';
 export class ArtistsService {
   constructor(private db: DatabaseService) {}
 
-  public getUsers() {
-    return this.db.getUsersList();
+  public async getArtists(): Promise<IArtist[]> {
+    return this.db.artists.getArtistsList();
   }
 }
