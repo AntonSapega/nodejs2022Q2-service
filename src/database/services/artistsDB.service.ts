@@ -11,6 +11,16 @@ export class ArtistsDBService {
       name: 'Metallica',
       grammy: false,
     },
+    {
+      id: '43fc85b1-724f-4d01-b15d-a74e72332aa8',
+      name: 'Enigma',
+      grammy: false,
+    },
+    {
+      id: '43fc85b1-724f-4d01-b15d-a74e72332aa9',
+      name: 'Deep Purple',
+      grammy: false,
+    },
   ];
 
   public async getArtistsList(): Promise<IArtist[]> {

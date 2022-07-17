@@ -4,6 +4,7 @@ import { UsersDBService } from './services/usersDB.service';
 import { ArtistsDBService } from './services/artistsDB.service';
 import { TracksDBService } from './services/tracksDB.service';
 import { AlbumsDBService } from './services/albumsDB.service';
+import { FavoritesDBService } from './services/favoritesDB.service';
 
 @Module({
   providers: [
@@ -12,6 +13,7 @@ import { AlbumsDBService } from './services/albumsDB.service';
     ArtistsDBService,
     TracksDBService,
     AlbumsDBService,
+    FavoritesDBService,
   ],
   exports: [DatabaseService],
 })
