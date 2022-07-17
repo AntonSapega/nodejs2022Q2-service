@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IUser } from '../interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 
 @Injectable()
 export class UsersDBService {
@@ -27,7 +27,7 @@ export class UsersDBService {
   }
 
   public create(newUser: IUser): Promise<IUser> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.usersDB.push(newUser);
       const userResponse = this.prepareUserForResponse(newUser);
       resolve(userResponse);

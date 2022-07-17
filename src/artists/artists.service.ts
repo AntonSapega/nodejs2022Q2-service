@@ -45,13 +45,6 @@ export class ArtistsService {
     return this.db.artists.createNewArtist(newArtist);
   }
 
-  private checkCreatedArtistDto(dto: CreateArtistDto): boolean {
-    if ('name' in dto && 'grammy' in dto) {
-      return true;
-    }
-    return false;
-  }
-
   public async update(
     identifier: string,
     dto: UpdateArtistDto,
@@ -85,6 +78,13 @@ export class ArtistsService {
     if (!result) {
       throw new NotFoundException();
     }
+  }
+
+  private checkCreatedArtistDto(dto: CreateArtistDto): boolean {
+    if ('name' in dto && 'grammy' in dto) {
+      return true;
+    }
+    return false;
   }
 
   private isValidUpdateDto(dto: UpdateArtistDto): boolean {
