@@ -9,4 +9,8 @@ export class FavoritesService {
   public async getFavorites(): Promise<IFavoritesResponse> {
     return this.db.favorites.getFavoritesList();
   }
+
+  public async addTrack(trackId: string): Promise<void> {
+    // this.db.favorites.addFavoriteTrack(trackId);
+  }
 }
