@@ -3,6 +3,7 @@ import { DatabaseService } from './database.service';
 import { UsersDBService } from './services/usersDB.service';
 import { ArtistsDBService } from './services/artistsDB.service';
 import { TracksDBService } from './services/tracksDB.service';
+import { AlbumsDBService } from './services/albumsDB.service';
 
 @Module({
   providers: [
@@ -10,6 +11,7 @@ import { TracksDBService } from './services/tracksDB.service';
     UsersDBService,
     ArtistsDBService,
     TracksDBService,
+    AlbumsDBService,
   ],
   exports: [DatabaseService],
 })

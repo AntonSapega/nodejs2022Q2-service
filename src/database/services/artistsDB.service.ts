@@ -8,7 +8,7 @@ export class ArtistsDBService {
   private artistsDB: Array<IArtist> = [
     {
       id: '3c923503-1823-47af-afc1-2cfcc604b5db',
-      name: 'Alex',
+      name: 'Metallica',
       grammy: false,
     },
   ];
