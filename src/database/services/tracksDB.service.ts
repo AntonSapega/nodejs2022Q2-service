@@ -74,9 +74,9 @@ export class TracksDBService {
   }
 
   public resetArtistId(artistIdx: string): void {
-    const track: ITrack = this.tracksDB.find((track) => {
+    const tracks: ITrack[] = this.tracksDB.filter((track) => {
       return track.artistId === artistIdx;
     });
-    track.artistId = null;
+    tracks.map((track) => (track.artistId = null));
   }
 }

@@ -66,10 +66,10 @@ export class AlbumsDBService {
     });
   }
 
-  // public resetArtistId(artistIdx: string): void {
-  //   const track: ITrack = this.tracksDB.find((track) => {
-  //     return track.artistId === artistIdx;
-  //   });
-  //   track.artistId = null;
-  // }
+  public resetArtistId(artistIdx: string): void {
+    const albums: IAlbum[] = this.albumsDB.filter((album) => {
+      return album.artistId === artistIdx;
+    });
+    albums.map((album) => (album.artistId = null));
+  }
 }

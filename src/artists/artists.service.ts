@@ -78,6 +78,8 @@ export class ArtistsService {
     if (!result) {
       throw new NotFoundException();
     }
+
+    this.db.resetDependenciesWithArtistId(id); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
 
   private checkCreatedArtistDto(dto: CreateArtistDto): boolean {

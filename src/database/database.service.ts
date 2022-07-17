@@ -17,4 +17,9 @@ export class DatabaseService {
   public artists: ArtistsDBService = this.artistsService;
   public tracks: TracksDBService = this.tracksService;
   public albums: AlbumsDBService = this.albumsService;
+
+  public resetDependenciesWithArtistId(artistId: string) {
+    this.tracks.resetArtistId(artistId);
+    this.albums.resetArtistId(artistId);
+  }
 }
