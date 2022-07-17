@@ -50,7 +50,7 @@ export class AlbumsService {
   ): Promise<IAlbum> {
     const album: IAlbum | null = await this.db.albums.getAlbum(identifier);
 
-    if (!uuidValidate(identifier) || !this.isDto<UpdateAlbumDto>(dto)) {
+    if (!uuidValidate(identifier) || !this.isValidTypesDto(dto)) {
       throw new BadRequestException();
     }
 
@@ -78,11 +78,24 @@ export class AlbumsService {
     if (!result) {
       throw new NotFoundException();
     }
+
+    this.db.resetDependenciesWithAlbumId(id);
   }
 
   // PRIVATE
   private isDto<T>(dto: T): boolean {
     if ('name' in dto && 'artistId' in dto && 'year' in dto) {
+      return true;
+    }
+    return false;
+  }
+
+  private isValidTypesDto(dto: UpdateAlbumDto): boolean {
+    if (
+      typeof dto.name === 'string' &&
+      typeof dto.year === 'number' &&
+      (typeof dto.artistId === 'string' || dto.artistId === null)
+    ) {
       return true;
     }
     return false;

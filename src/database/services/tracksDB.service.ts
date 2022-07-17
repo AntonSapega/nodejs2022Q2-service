@@ -79,4 +79,12 @@ export class TracksDBService {
     });
     tracks.map((track) => (track.artistId = null));
   }
+
+  public resetAlbumId(albumIdx: string): void {
+    const tracks: ITrack[] = this.tracksDB.filter((track) => {
+      return track.albumId === albumIdx;
+    });
+
+    tracks.map((track) => (track.albumId = null));
+  }
 }

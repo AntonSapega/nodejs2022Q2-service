@@ -50,7 +50,7 @@ export class TracksService {
   ): Promise<ITrack> {
     const track: ITrack | null = await this.db.tracks.getTrack(identifier);
 
-    if (!uuidValidate(identifier) || !this.isDto<UpdateTrackDto>(dto)) {
+    if (!uuidValidate(identifier) || !this.isValidTypesDto(dto)) {
       throw new BadRequestException();
     }
 
@@ -88,6 +88,18 @@ export class TracksService {
       'artistId' in dto &&
       'albumId' in dto &&
       'duration' in dto
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  private isValidTypesDto(dto: UpdateTrackDto): boolean {
+    if (
+      typeof dto.name === 'string' &&
+      typeof dto.duration === 'number' &&
+      (typeof dto.artistId === 'string' || dto.artistId === null) &&
+      (typeof dto.albumId === 'string' || dto.albumId === null)
     ) {
       return true;
     }
